@@ -13,10 +13,6 @@
 #include <unordered_map>
 #include <queue>
 
-// TODO:
-// 5) end-to-end test с CI
-// 6) gtest
-
 namespace NdimensionalTree {
 
     template<typename T, std::size_t N = 2>
@@ -26,7 +22,7 @@ namespace NdimensionalTree {
         class Node final {
 
             T data;
-            std::vector<std::unique_ptr<Node>> childs;
+            std::vector<std::unique_ptr<Node>> children;
             Node* parent;
 
         public:
@@ -36,12 +32,12 @@ namespace NdimensionalTree {
 
             std::vector<std::unique_ptr<Node>>& GetChildren() noexcept {
 
-                return childs;
+                return children;
             }
 
             const std::vector<std::unique_ptr<Node>>& GetChildren() const noexcept {
 
-                return childs;
+                return children;
             }
 
             const T& GetData() const noexcept {
@@ -56,7 +52,7 @@ namespace NdimensionalTree {
 
             std::size_t GetChildrenSize() const noexcept {
 
-                return childs.size();
+                return children.size();
             }
 
             Node* GetParent() const noexcept {
@@ -270,12 +266,12 @@ namespace NdimensionalTree {
         void PrintTree(const typename Tree<T, N>::Node& node) const {
 
             std::ostringstream oss;
-            PrintPreOrder(node, oss);
+            GetPreOrder(node, oss);
 
             std::cout << oss.str() << "\n";
         }
 
-        void GenerateDotFile(const typename Tree<T, N>::Node& node, const std::string& filename) {
+        void GenerateDotFile(const typename Tree<T, N>::Node& node, const std::string& filename) const {
 
             std::ofstream dot_file(filename);
             if (dot_file.is_open()) {
@@ -296,18 +292,18 @@ namespace NdimensionalTree {
         
     
     private:
-        void PrintPreOrder(const typename Tree<T, N>::Node& node, std::ostringstream& oss) const {
+        void GetPreOrder(const typename Tree<T, N>::Node& node, std::ostringstream& oss) const {
 
             oss << node.GetData() << " ";
 
             const auto& children = node.GetChildren();
     
             for (const auto& child : children) {
-                PrintPreOrder(*child, oss);
+                GetPreOrder(*child, oss);
             }
         }
 
-        void GenerateDotFile(const typename Tree<T, N>::Node& node, std::ofstream& dot_file, std::unordered_map<const typename Tree<T, N>::Node*, std::size_t>& node_ids, std::size_t& counter) {
+        void GenerateDotFile(const typename Tree<T, N>::Node& node, std::ofstream& dot_file, std::unordered_map<const typename Tree<T, N>::Node*, std::size_t>& node_ids, std::size_t& counter) const {
 
             if (node_ids.find(&node) == node_ids.end()) {
                 node_ids[&node] = counter++;
