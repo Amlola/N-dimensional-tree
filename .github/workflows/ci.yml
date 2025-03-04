@@ -60,7 +60,7 @@ jobs:
 
       - name: Run end-to-end tests
         run: |
-          cd test/end-to-end/build && ./EndToEndTest 
+          ./test/end-to-end/build/EndToEndTest 
  
       - name: Convert .dot to .png
         run: |
@@ -77,4 +77,4 @@ jobs:
 
       - name: Run unit tests
         run: |
-          cd test/unit-test/build && ./UnitTest
+          ./test/unit-test/build/UnitTest
