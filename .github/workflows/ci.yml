@@ -44,9 +44,13 @@ jobs:
           cmake ..
           make
 
-      - name: List build directory
-        run: |
-         ls -l test/unit-test/build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            test/unit-test/build
+            test/end-to-end/build
 
   end-to-end-tests:
     name: Run end-to-end tests
@@ -56,6 +60,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: test
 
       - name: Install Graphviz
         run: |
@@ -82,6 +92,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: test
 
       - name: Run unit tests
         run: |
