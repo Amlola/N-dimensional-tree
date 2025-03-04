@@ -43,6 +43,10 @@ jobs:
           cd test/unit-test/build
           cmake ..
           make
+          
+      - name: List build directory
+        run: |
+         ls -l test/unit-test/build
 
   end-to-end-tests:
     name: Run end-to-end tests
