@@ -64,7 +64,7 @@ jobs:
     
       - name: CheckDir
         run: |
-          ls 
+          ls test/end-to-end
 
       - name: Run end-to-end tests
         run: |
