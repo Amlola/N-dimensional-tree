@@ -71,13 +71,10 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y graphviz
-    
-      - name: CheckDir
-        run: |
-          ls test/end-to-end
 
       - name: Run end-to-end tests
         run: |
+          chmod +x test/end-to-end/build/EndToEndTest
           ./test/end-to-end/build/EndToEndTest 
  
       - name: Convert .dot to .png
@@ -101,4 +98,5 @@ jobs:
 
       - name: Run unit tests
         run: |
+          chmod +x test/unit-test/build/UnitTest
           ./test/unit-test/build/UnitTest
