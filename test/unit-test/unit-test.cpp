@@ -33,7 +33,7 @@ TEST(TreeTest, IteratorTest) {
 
     std::vector<int> resulting_vector;
 
-    for (auto it = tree.begin(); !(it == tree.end()); ++it) {
+    for (auto it = tree.begin(); it != tree.end(); ++it) {
         resulting_vector.push_back(it->GetData());
     }
 

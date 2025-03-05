@@ -88,6 +88,14 @@ namespace NdimensionalTree {
 
         explicit Tree(const T& value) : root(std::make_unique<Node>(value)) {}
 
+        Tree(const Tree& other) = default;
+
+        Tree& operator=(const Tree& other) = default;
+
+        Tree(Tree&& other) noexcept = default;
+
+        Tree& operator=(Tree&& other) noexcept = default;
+
         template <typename It>
         Tree(It begin, It end) {
 

@@ -25,7 +25,7 @@ int main() {
         auto child4_it = tree2.Insert(root_it, 4);  
         auto child5_it = tree2.Insert(root_it, 5);
 
-        for (auto it = tree2.begin(); !(it == tree2.end()); ++it) {
+        for (auto it = tree2.begin(); it != tree2.end(); ++it) {
             std::cout << it->GetData() << " ";
         }
         std::cout << "\n";
@@ -33,9 +33,13 @@ int main() {
         auto find_it = tree1.Find(remove_value);
         auto remove_it = tree1.Erase(remove_value);
 
+        auto remove_it1 = tree1.Erase(4);
+
+        tree1.Insert(tree1.begin(), 100);
+
         NdimensionalTree::TreePrinter<int, size> printer;
 
-        printer.GenerateDotFile(*(tree1.begin()), "examples/tree.dot");
+        printer.GenerateDotFile(*(tree1.begin()), "../../../examples/tree.dot");
 
         printer.PrintTree(*root_it);
 
