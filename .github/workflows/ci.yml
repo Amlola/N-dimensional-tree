@@ -75,7 +75,8 @@ jobs:
       - name: Run end-to-end tests
         run: |
           chmod +x test/end-to-end/build/EndToEndTest
-          ./test/end-to-end/build/EndToEndTest 
+          cd test/end-to-end/build/
+          ./EndToEndTest 
  
       - name: Convert .dot to .png
         run: |

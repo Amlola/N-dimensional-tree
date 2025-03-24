@@ -39,7 +39,7 @@ int main() {
 
         NdimensionalTree::TreePrinter<int, size> printer;
 
-        printer.GenerateDotFile(*(tree1.begin()), "examples/tree.dot");
+        printer.GenerateDotFile(*(tree1.begin()), "../../../examples/tree.dot");
 
         printer.PrintTree(*root_it);
 
